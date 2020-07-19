@@ -8,6 +8,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven ("https://jitpack.io" )
 }
 
 dependencies {
@@ -15,6 +16,7 @@ dependencies {
     testCompile("junit", "junit", "4.12")
     //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
     implementation("org.jetbrains.kotlinx" , "kotlinx-coroutines-core" , "1.2.1")
+    compile("com.github.shaunxiao" , "kotlinGameEngine" , "v0.0.1")
     
 }
 

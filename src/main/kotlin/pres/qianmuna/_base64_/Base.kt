@@ -16,7 +16,7 @@ fun main() {
     var decoder = BASE64Decoder()
     var encoder = BASE64Encoder()
     var string = String(decoder.decodeBuffer("yf3WsLzT0L0="), Charset.forName("GB2312"))
-    var string2 = String(decoder.decodeBuffer("5oiR5Y+8bm1k="), Charset.forName("UTF8"))
+    var string2 = String(decoder.decodeBuffer("5oiR5Y+8bm1k"), Charset.forName("UTF8"))
     println(string)
     println(string2)
 
