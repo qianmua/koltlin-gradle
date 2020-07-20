@@ -19,20 +19,19 @@ class WindowsGame :Window(
     width = Config.WIDTH ,
     height = Config.HEIGHT){
 
-    private val wall  = Wall()
 
     override fun onCreate() {
+        // map
+
     }
 
     override fun onDisplay() {
         // draw img
 
-
         // draw wall
-        wall.draw()
 
         //draw grass
-        Painter.drawImage("" , 20,20)
+
     }
 
     override fun onKeyPressed(event: KeyEvent) {

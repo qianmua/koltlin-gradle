@@ -10,10 +10,10 @@ import pres.qianmuna._0_tank.Config
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Grass :View{
+class Grass(override val x: Int, override val y: Int) :View{
     // location
-    override var x:Int = 1
-    override var y:Int = 2
+
+
     // width height
     override var width:Int = Config.BLOCK
     override var height:Int = Config.BLOCK

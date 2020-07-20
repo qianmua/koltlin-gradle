@@ -5,12 +5,12 @@ import pres.qianmuna._0_tank.Config
 
 /**
 @author HJC
-@date 2020/7/19  22:21
+@date 2020/7/19  22:25
 @description :
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Wall(override val x: Int, override val y: Int) :View{
+class Steel(override val x: Int, override val y: Int) :View{
     // location
 
 
