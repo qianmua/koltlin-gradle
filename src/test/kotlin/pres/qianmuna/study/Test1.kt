@@ -75,7 +75,7 @@ class Test1 {
         // orEmpty
         // 空容器
 
-        val map1 = {"a" to 1 ; "b" to 2; "c" to 2; "d" to 2; "e" to 2}
+        val map1 = mapOf("a" to 1 , "b" to 2, "c" to 2, "d" to 2, "e" to 2)
 
         val key = 'a' .. 'c'
         //.capitalize() 首字母 大写
@@ -94,12 +94,74 @@ class Test1 {
     @Test
     fun m5(){
 
+        // 算数
+        // + - * / %
+        // 中缀函数
+        // and or xor shl shr
+        println(1 and 2)
+        // -- ++ inv
+
+
+        val map = mapOf("a" to "b" , "b" to "c" )
+        val a = map.mapValues { v1 ->
+            val (a,b) = v1
+            "$a to $b"
+        }
+        val b = map.mapValues { (v1 , v2) ->
+            "$v1 to $v2"
+        }
+
+        println(b)
+
+        val	map2	=	mapOf(1	to	"one",	2	to	"two")
+
+        map2.forEach { (_, u) -> println(u) }
+
+    }
+
+    data class Test1(val name:String , val age:Int)
+
+    fun getTest1() = Test1("A" , 18)
+
+
+    fun test5(s:Any){
+        val f = (s as? CharSequence)?.firstOrNull()
+        if (f != null)
+            // 智能转换
+            println(s.count{ it == f })
 
 
     }
 
 
+    @Test
+    fun m6(){
+        val (name , age) = getTest1()
 
+
+        val onM = 100_000_000_000
+
+        val b = 0b10101_1001001_10010
+
+        val hex = 0xFF_EE_99_88
+
+
+        println(hex.toString(16))
+
+        println(test6 { "6" })
+    }
+
+    inline fun test6( v1: (String) -> String ):String = v1("nb")
+
+
+
+    @Test
+    fun m7(){
+        val a by lazy { 100 }
+
+        println(a)
+        /// page 60
+    }
 
 }
 
