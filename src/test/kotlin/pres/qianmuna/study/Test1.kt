@@ -328,6 +328,171 @@ class Test1 {
     }
 
 
+    @Test
+    fun m12(){
+        // type
+        // byte
+        // short
+        // int
+        // long
+        // float
+        // double
+
+        // 不支持 八进制 表示
+
+
+        // 较小的类型不能隐式转换为较大的类型
+
+
+        println(1 shl 2)
+
+
+        val arr = arrayOfNulls<Int>(10)
+
+        val arr2 = Array(5){it.toDouble()}
+
+        val arr3:Array<out Any>
+        arr3 = arr2
+
+        println(arr3.contentToString())
+
+        //
+        val arr4 = intArrayOf(2,3,4,5,6)
+
+        val str = "${'$'}999"
+        println(str)
+
+
+    }
+
+    @Test
+    fun m13(){
+
+    }
+
+    data class C133(val name:String , val age:String)
+    class C1331 constructor(
+        /**/
+        val name:String ,
+        val age:String){
+
+        constructor(name :String, age:String,adddress:String):this(name, age){
+            println(66)
+        }
+
+    }
+
+    class C1332 private constructor(){}
+
+
+    class C1333 {
+        companion object{
+
+            fun m1(){
+                println("6")
+            }
+
+
+        }
+
+        fun m1(){
+            println("7")
+        }
+    }
+
+    @Test
+    fun m14(){
+        C1333.m1() // 6
+        C1333().m1()// 7
+
+
+        /*if (pres.qianmuna.study.Test1::sub.isLateinit){
+            println("1")
+        }*/
+    }
+
+    var counter = 1
+
+
+    // 延迟初始化属性与变
+    lateinit var sub:String
+
+
+    interface IC141<out T>{
+        fun next():T
+    }
+    fun testIC141(s:IC141<String>){
+        val obj = s
+        val obj2 : IC141<Any> = s
+
+        //....
+        T1().T2().T3().T4().tm1()
+    }
+
+    class T1{
+        inner class T2{
+            inner class T3{
+                inner class T4{
+                    fun tm1(){
+                        println("?")
+                    }
+                }
+            }
+        }
+    }
+
+
+    enum class Pro{
+        WAT{
+            override fun sig(): Pro  = TAL
+
+        },
+
+        TAL{
+            override fun sig(): Pro  = WAT
+
+        };
+
+        abstract fun sig():Pro
+    }
+
+
+    interface IntBina{
+        fun apply(v1:Int, v2:Int):Int
+        fun applyAsyInt(v1:Int, v2:Int):Int
+    }
+
+    enum class IntArt:IntBina{
+        SUM{
+            override fun apply(v1: Int, v2: Int): Int  = v1 + v2
+
+        } , TIMES{
+            override fun apply(v1: Int, v2: Int): Int  = v1 * v2
+        };
+
+        override fun applyAsyInt(v1: Int, v2: Int): Int = apply(v1,v2)
+
+    }
+
+    enum class TestMax(val code:Int , val msg:String){
+        NOT(404,"not found"),
+        ERROR(500,"server error");
+
+    }
+
+    fun testTestMaxEnum(){
+        val code = TestMax.NOT.code
+        val msg = TestMax.NOT.msg
+        // 位置
+        val index = TestMax.NOT.ordinal
+        // 名称
+        val name = TestMax.NOT.name
+    }
+
+
+
+
+
 
 
 
