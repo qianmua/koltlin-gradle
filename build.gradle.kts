@@ -12,10 +12,15 @@ repositories {
 }
 
 dependencies {
+
     implementation(kotlin("stdlib-jdk8"))
-    testCompile("junit", "junit", "4.12")
+    implementation("org.jsoup:jsoup:1.12.1")
+
     //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
     implementation("org.jetbrains.kotlinx" , "kotlinx-coroutines-core" , "1.2.1")
+
+    testCompile("junit", "junit", "4.12")
+
     compile("com.github.shaunxiao" , "kotlinGameEngine" , "v0.0.1")
     
 }
