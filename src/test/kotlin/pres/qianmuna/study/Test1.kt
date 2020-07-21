@@ -161,7 +161,102 @@ class Test1 {
 
         println(a)
         /// page 60
+
     }
+    /// 泛型 枚举
+    enum class CE1{
+        RED,GREEN,BLUE
+    }
+
+    // 泛型
+    inline fun <reified T : Enum<T>> sout(){
+        println(enumValues<T>().joinToString { it.name })
+    }
+
+
+    @Test
+    fun m8(){
+
+        // mod -> rem
+        println(100 xor 20)
+
+        val a1 = "100"
+        val a2 = a1.toIntOrNull() /*?: -1*/
+
+        val a3 = a2?.toString()
+
+    }
+
+    class C8{
+        lateinit var cont:String
+    }
+
+    fun C8.copy() = C8().also { it.cont = this.cont }
+
+
+    @Test
+    fun m9(){
+        val	words	= "one	two	three	four	five	six	seven	eight	nine	ten".split('	')
+        var by = words.groupBy {
+            it.first()
+        }
+
+        val map1 = mapOf<String,Int>()
+        // copy
+        val map2 = map1.toMap()
+
+        val a = arrayOf(1,2,3)
+        val b = arrayOf(4,5,6)
+
+        val min = minOf(a.size , b.size)
+        println(min)
+
+
+        val list = List(10){ it + 1 }
+        println(list)
+
+        val mutList = MutableList(10) { 10 }
+
+        println(mutList)
+
+        val arr = arrayOf("A" , "B" , "c")
+        // hash
+        println(arr.toString())
+        // toString
+        println(arr.contentToString())
+
+
+
+    }
+
+
+    private fun add (a:Int, b:Int ):Int = a + b
+    @Test
+    fun m10(){
+        println("this is ${add(10000,2)}")
+
+        val listofTest = listOf("A"  , "B" , "C" , "D")
+
+        // 下标
+        for (s in listofTest.indices) {
+            println(listofTest[s])
+        }
+        var index = 0
+        while (index < listofTest.size){
+            index ++
+        }
+
+        val ran = 1 .. 10 + 1
+        println(ran.toList())
+
+
+
+
+
+    }
+
+
+
 
 }
 
