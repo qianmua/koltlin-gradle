@@ -1,6 +1,7 @@
 package pres.qianmuna.study
 
 import org.junit.Test
+import java.util.Arrays.asList
 import kotlin.random.Random
 
 
@@ -487,9 +488,84 @@ class Test1 {
         val index = TestMax.NOT.ordinal
         // 名称
         val name = TestMax.NOT.name
+
+
+        val ob = object {
+            var x:Int = -1
+            var y:Int = -1
+        }
+
+        println("${ob.x} : ${ob.y}")
+
     }
 
+    object TestDate{
+        lateinit var str:String
+    }
 
+    interface Base{
+        fun p()
+    }
+    class TByBase(val x:Base) :Base by x
+
+    @Test
+    fun m15(){
+
+        TByBase(object :Base{
+            override fun p() {
+                println("100")
+            }
+        }).x.p()
+
+    }
+
+    val lazStr:String by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {
+        "66"
+    }
+
+    // *
+
+    fun foo1(vararg str:String){}
+
+    @Test
+    fun m16(){
+        foo1( str = *arrayOf("A" , "B" , "C"))
+
+        val	a= arrayOf(1,2,3)
+        val	list = listOf(-1, 2 , *a , 5)
+
+
+    }
+
+    // 中缀
+    // 成员 扩展
+    // 一个参数
+    // 不能有 默认 和 可变参数
+
+    private infix fun Int.maxValue(v1:Int):Boolean = this > v1
+
+    fun testMaxValue(){
+        println(1 maxValue 2 + 1) // 1 maxValue( 2 + 3)
+
+
+        val f1 = fun(x:Int):Int = x * 10
+
+        val f2 = {x:Int -> x * 10}
+
+        val fun1 = fun(ins:List<Int>):Boolean{
+            ins.forEach {
+                if (it == 0)
+                    return true
+                // it == 0
+            }
+            return false
+        }
+
+    }
+
+    // 尾递归 优化
+    // tailrec
+    //
 
 
 
