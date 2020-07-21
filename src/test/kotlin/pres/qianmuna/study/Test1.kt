@@ -231,6 +231,8 @@ class Test1 {
 
 
     private fun add (a:Int, b:Int ):Int = a + b
+
+
     @Test
     fun m10(){
         println("this is ${add(10000,2)}")
@@ -250,10 +252,81 @@ class Test1 {
         println(ran.toList())
 
 
+        if ( -1 !in 0 .. listofTest.lastIndex )
+            println("666")
 
 
+        when{
+            "A" in listofTest -> println("6")
+            "B" in listofTest -> println("7")
+            else -> println("unknow")
+
+        }
 
     }
+
+    abstract class C10(val sides:List<Double>){
+        val v1:Double get() = sides.sum()
+        abstract fun m1():Double
+        fun m2():Double = 0.0
+    }
+
+    fun m101(){
+        val mutlist = mutableListOf(1,23,4,5,6)
+        mutlist.add(7)
+        // if not null
+        mutlist?.let {
+            println("$it not is null")
+        }
+
+        // 调用多次 同一个 对象方法
+        val c10 = C101()
+        with(c10){
+            println(m1())
+            for (index in 1..4){
+                m2()
+            }
+            m3()
+        }
+
+        //apply 配置 未出现属性 // 构造
+        // also
+
+    }
+
+    // 交换
+    var a = 1
+    var b = 2
+
+
+    class C101{
+        fun m1() = "A"
+        fun m2() = "B"
+        fun m3() = "C"
+    }
+
+    @Test
+    fun m11(){
+        val i = 100 // 100.val
+
+        //幕后属性
+    }
+    private val _ele = 100
+
+    val ele
+        get() = _ele
+
+    // a++ // err a ++
+
+
+    fun m111(str:String = ""){/*...*/}
+
+    fun m112(){
+        for (i in 0 until 10){
+            println(i)
+        }
+    }
+
 
 
 
