@@ -3,6 +3,7 @@ package pres.qianmuna.study
 import org.junit.Test
 import java.util.Arrays.asList
 import kotlin.random.Random
+import kotlin.reflect.typeOf
 
 
 /**
@@ -571,10 +572,47 @@ class Test1 {
     @Test
     fun m17(){
         // page 225
+        // 0
+        // 注意 0 既不是 正数 也不是 负数
+        // 0 取反1就是 -1
+        // 取反 + 1
+        println( ((1 shl 31) shr 31).inv() )
+
+
+        // list
+
+        //
+        /*
+        *
+        * Iterable
+        *   mutableIterable
+        *   collection  (root)
+        *       List
+        *       Set
+        *
+        *           MutableList
+        *           MutableSet
+        *
+        *       mutableCollection (write)
+        *       // 具有 写接口
+        *           MutableList
+        *           MutableSet
+        *
+        *
+        * Map
+        *   MutableMap
+        *
+        *
+        *
+        * */
+
 
     }
 
 
+
+
+    
 
 
 
