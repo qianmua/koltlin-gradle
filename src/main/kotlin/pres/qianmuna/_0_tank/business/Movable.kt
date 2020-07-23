@@ -1,6 +1,7 @@
 package pres.qianmuna._0_tank.business
 
 import pres.qianmuna._0_tank.enums.Direction
+import pres.qianmuna._0_tank.model.Bullet
 import pres.qianmuna._0_tank.model.View
 
 /**
@@ -33,4 +34,7 @@ interface Movable:View {
      * notifyCollision
      */
     fun notifyCollision(direction: Direction? , block: Blockable?)
+
+    fun attack():Bullet
+
 }

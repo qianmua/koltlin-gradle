@@ -71,6 +71,8 @@ class Tank(override var x: Int, override var y: Int) :Movable{
         this.badDir = direction
     }
 
+    override fun attack(): Bullet = Bullet()
+
     // up down left right
     override fun draw() {
         val dir = when(currentDirection){

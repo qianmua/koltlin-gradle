@@ -75,6 +75,13 @@ class WindowsGame :Window(
             KeyCode.A -> tank.moveTank(Direction.LEFT)
             KeyCode.S -> tank.moveTank(Direction.DOWN)
             KeyCode.D -> tank.moveTank(Direction.RIGHT)
+            //attack
+            KeyCode.K -> {
+                var bullet = tank.attack()
+                // views
+                views.add(bullet)
+
+            }
         }
     }
 
