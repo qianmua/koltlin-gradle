@@ -71,7 +71,35 @@ class Tank(override var x: Int, override var y: Int) :Movable{
         this.badDir = direction
     }
 
-    override fun attack(): Bullet = Bullet()
+    /**
+     * 发射子弹
+     */
+    override fun attack(): Bullet = Bullet(this.currentDirection ){ bW , bH ->
+        var bX = 0
+        var bY = 0
+        val tW = this.width
+        val tH = this.height
+
+        when(currentDirection){
+            Direction.UP -> {
+                bX = this.x + (tW - bW) / 2
+                bY = this.y - bH / 2
+            }
+            Direction.DOWN -> {
+                bX = this.x + (tW - bW) / 2
+                bY = this.y + tH - bH / 2
+            }
+            Direction.RIGHT -> {
+                bX = this.x + tW - bW / 2
+                bY = this.y + (tH - bH) / 2
+            }
+            Direction.LEFT -> {
+                bX = this.x - bX / 2
+                bY = this.y + (tH + bH) / 2
+            }
+        }
+        Pair(bX , bY)
+    }
 
     // up down left right
     override fun draw() {
