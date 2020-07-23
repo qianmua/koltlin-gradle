@@ -11,13 +11,16 @@ import pres.qianmuna._0_tank.enums.Direction
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Tank(override val x: Int, override val y: Int) :View {
+class Tank(override var x: Int, override var y: Int) :View {
 
     override val width: Int = Config.BLOCK
     override val height: Int= Config.BLOCK
 
     // default direction
-    val currentDirectin:Direction = Direction.UP
+    private var currentDirectin:Direction = Direction.UP
+
+    // speed
+    private var speed = 8
 
     // up down left right
     override fun draw() {
@@ -28,6 +31,32 @@ class Tank(override val x: Int, override val y: Int) :View {
             Direction.RIGHT -> "/img...4"
         }
         Painter.drawImage(dir , x , y)
+    }
+
+    fun moveTank(direction: Direction){
+        // change direction
+        if (this.currentDirectin != direction){
+            this.currentDirectin = direction
+            return
+        }
+
+        // 越界 判断
+        if (this.x+speed >= Config.WIDTH
+            || this.x -speed <= 0
+            || this.y + speed >= Config.HEIGHT
+            || this.y - speed <=0 )
+            return
+
+        // location
+        when(this.currentDirectin){
+
+            Direction.UP -> y -= speed
+            Direction.DOWN -> y += speed
+            Direction.LEFT -> x -= speed
+            Direction.RIGHT -> x += speed
+
+        }
+
     }
 
 

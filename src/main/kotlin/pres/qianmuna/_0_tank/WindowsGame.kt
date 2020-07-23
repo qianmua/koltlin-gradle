@@ -1,12 +1,11 @@
 package pres.qianmuna._0_tank
 
+import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
 import org.itheima.kotlin.game.core.Painter
 import org.itheima.kotlin.game.core.Window
-import pres.qianmuna._0_tank.model.Grass
-import pres.qianmuna._0_tank.model.Steel
-import pres.qianmuna._0_tank.model.View
-import pres.qianmuna._0_tank.model.Wall
+import pres.qianmuna._0_tank.enums.Direction
+import pres.qianmuna._0_tank.model.*
 import java.io.File
 
 /**
@@ -25,6 +24,8 @@ class WindowsGame :Window(
 
     // 图像
     private val views = arrayListOf<View>()
+    // my tank
+    private lateinit var tank:Tank
 
     override fun onCreate() {
         // map create
@@ -50,9 +51,13 @@ class WindowsGame :Window(
             }
         }
 
+        tank = Tank(Config.BLOCK * 10, Config.BLOCK * 12)
+        views.add(tank)
+
     }
 
     // 绘制
+    //不停的 刷新//
     override fun onDisplay() {
         // draw img
         views.forEach { it.draw() }
@@ -60,6 +65,14 @@ class WindowsGame :Window(
     }
 
     override fun onKeyPressed(event: KeyEvent) {
+
+        // move tank // dir
+        when(event.code){
+            KeyCode.W -> tank.moveTank(Direction.UP)
+            KeyCode.A -> tank.moveTank(Direction.LEFT)
+            KeyCode.S -> tank.moveTank(Direction.DOWN)
+            KeyCode.D -> tank.moveTank(Direction.RIGHT)
+        }
     }
 
     override fun onRefresh() {
