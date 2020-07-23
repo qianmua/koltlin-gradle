@@ -1,16 +1,17 @@
 package pres.qianmuna._0_tank.model
 
 import org.itheima.kotlin.game.core.Painter
+import pres.qianmuna._0_tank.business.AutoMovable
 import pres.qianmuna._0_tank.enums.Direction
 
 /**
 @author HJC
 @date 2020/7/23  20:12
-@description : 子弹 create() //
+@description : 子弹 create() // 闭包
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Bullet(private val direction: Direction,create:(width:Int , height:Int) -> Pair<Int , Int>) :View {
+class Bullet(override val currentDirection: Direction,create:(width:Int , height:Int) -> Pair<Int , Int>) :AutoMovable {
 
     override var x: Int = 0
     override var y: Int = 0
@@ -19,21 +20,12 @@ class Bullet(private val direction: Direction,create:(width:Int , height:Int) ->
     override var height: Int = 0
 
     // 子弹 位置
-    private val imgUrl = when(direction){
-        Direction.UP -> {
-            this.x = this.x + (32 - 16) / 2
-            this.y = this.y - 32 / 2
-            "..1"
-        }
-        Direction.LEFT -> {
-            "..2"
-        }
-        Direction.RIGHT -> {
-            "..3"
-        }
-        Direction.DOWN -> {
-            "..4"
-        }
+    private val imgUrl = when(currentDirection){
+        Direction.UP -> "..1"
+        Direction.LEFT -> "..2"
+        Direction.RIGHT -> "..3"
+        Direction.DOWN -> "..4"
+
     }
 
     init {
@@ -57,6 +49,21 @@ class Bullet(private val direction: Direction,create:(width:Int , height:Int) ->
 
         // 绘制子弹
         Painter.drawImage(imgUrl , this.x , this.y)
+    }
+
+
+    /**
+     * 子弹 飞行
+     */
+    override fun autoMovable() {
+        // 根据方向 绘制 坐标
+        when(currentDirection){
+            Direction.UP -> this.y -= super.speed
+            Direction.DOWN -> this.y += super.speed
+            Direction.LEFT -> this.x -= super.speed
+            Direction.RIGHT -> this.x += super.speed
+        }
+
     }
 
 }

@@ -4,6 +4,7 @@ import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
 import org.itheima.kotlin.game.core.Painter
 import org.itheima.kotlin.game.core.Window
+import pres.qianmuna._0_tank.business.AutoMovable
 import pres.qianmuna._0_tank.business.Blockable
 import pres.qianmuna._0_tank.business.Movable
 import pres.qianmuna._0_tank.enums.Direction
@@ -94,7 +95,6 @@ class WindowsGame :Window(
         //block
         views.filterIsInstance<Movable>()
             .forEach {mov ->
-                mov as Movable
 
                 // tag 碰撞
                 var badColl:Direction? = null
@@ -103,7 +103,6 @@ class WindowsGame :Window(
                 views.filterIsInstance<Blockable>()
                     .forEach blockTag@ {block ->
                         // 碰撞
-                        block as Blockable
 
                         // 碰撞 方向
                         val dir = mov.willCollision(block)
@@ -119,8 +118,13 @@ class WindowsGame :Window(
                 // search block
                 // notify msg to mover will collision
                 mov.notifyCollision(badColl , badBlock)
-
             }
+
+        // 子弹 移动
+        views.filterIsInstance<AutoMovable>().forEach {
+            // 移动
+            it.autoMovable()
+        }
 
 
     }
