@@ -11,7 +11,7 @@ import pres.qianmuna._0_tank.business.Blockable
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Steel(override val x: Int, override val y: Int) :View , Blockable {
+class Steel(override val x: Int, override val y: Int) :Blockable {
     // location
 
 

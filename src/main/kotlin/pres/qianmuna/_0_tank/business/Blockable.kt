@@ -9,6 +9,4 @@ import pres.qianmuna._0_tank.model.View
 @version 1.0
 谦谦君子 卑以自牧也
  */
-interface Blockable :View{
-
-}
+interface Blockable :View

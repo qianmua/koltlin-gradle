@@ -87,16 +87,32 @@ class WindowsGame :Window(
         //block
         views.filterIsInstance<Movable>()
             .forEach {mov ->
+                mov as Movable
+
+                // tag 碰撞
+                var badColl:Direction? = null
+                var badBlock:Blockable? = null
+
                 views.filterIsInstance<Blockable>()
-                    .forEach {block ->
+                    .forEach blockTag@ {block ->
                         // 碰撞
-                        mov as Movable
                         block as Blockable
 
                         // 碰撞 方向
                         val dir = mov.willCollision(block)
 
+                        // 碰撞？ 跳出
+                        dir?.let {
+                            badColl = dir
+                            badBlock = block
+                            return@blockTag
+                        }
                     }
+
+                // search block
+                // notify msg to mover will collision
+                mov.notifyCollision(badColl , badBlock)
+
             }
 
 

@@ -28,4 +28,9 @@ interface Movable:View {
      * @return dir if null -> not Collision
      */
     fun willCollision(block:Blockable):Direction?
+
+    /**
+     * notifyCollision
+     */
+    fun notifyCollision(direction: Direction? , block: Blockable?)
 }

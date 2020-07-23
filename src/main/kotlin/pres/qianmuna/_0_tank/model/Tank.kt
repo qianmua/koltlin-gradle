@@ -24,9 +24,51 @@ class Tank(override var x: Int, override var y: Int) :Movable{
     // speed
     override var speed = 8
 
+    private var badDir:Direction? = null
 
+    /**
+     * 检测 碰撞
+     *
+     * //
+     * 预判
+     */
     override fun willCollision(block: Blockable): Direction? {
-        TODO("Not yet implemented")
+
+        var x = this.x
+        var y = this.y
+
+        when(this.currentDirection){
+
+            Direction.UP -> y -= speed
+            Direction.DOWN -> y += speed
+            Direction.LEFT -> x -= speed
+            Direction.RIGHT -> x += speed
+
+        }
+
+        val coll = when {
+
+            block.y + block.height <= y -> false
+
+            y + this.height <= block.y -> false
+
+            block.x + block.width <= x -> false
+
+            else -> x + this.width > block.x
+        }
+
+        return if (coll)
+            currentDirection
+        else
+            null
+    }
+
+
+    /**
+     * 接收碰撞
+     */
+    override fun notifyCollision(direction: Direction?, block: Blockable?) {
+        this.badDir = direction
     }
 
     // up down left right
@@ -40,12 +82,20 @@ class Tank(override var x: Int, override var y: Int) :Movable{
         Painter.drawImage(dir , x , y)
     }
 
+    /**
+     * tank 移动
+     */
     fun moveTank(direction: Direction){
+
         // change direction
         if (this.currentDirection != direction){
             this.currentDirection = direction
             return
         }
+
+        // collision
+        if (direction == this.badDir)
+            return
 
         // 越界 判断
         if (this.x+speed >= Config.WIDTH
