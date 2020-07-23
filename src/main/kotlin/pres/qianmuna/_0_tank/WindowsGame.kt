@@ -130,6 +130,7 @@ class WindowsGame :Window(
         }
 
         // 销毁
+        // attack destroy
         views.filterIsInstance<Destroyable>().forEach {
             if (it.isDestroyed())
                 views.remove(it)
