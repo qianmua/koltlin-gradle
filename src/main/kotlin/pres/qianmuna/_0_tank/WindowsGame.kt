@@ -3,7 +3,11 @@ package pres.qianmuna._0_tank
 import javafx.scene.input.KeyEvent
 import org.itheima.kotlin.game.core.Painter
 import org.itheima.kotlin.game.core.Window
+import pres.qianmuna._0_tank.model.Grass
+import pres.qianmuna._0_tank.model.Steel
+import pres.qianmuna._0_tank.model.View
 import pres.qianmuna._0_tank.model.Wall
+import java.io.File
 
 /**
 @author HJC
@@ -19,18 +23,39 @@ class WindowsGame :Window(
     width = Config.WIDTH ,
     height = Config.HEIGHT){
 
+    // 图像
+    private val views = arrayListOf<View>()
 
     override fun onCreate() {
-        // map
+        // map create
+
+        // read config
+        val file = File(javaClass.getResource("/map/1.map").path)
+
+        // read line
+        val lines = file.readLines()
+        var lineNum = 0
+        lines.forEach { line ->
+            var columnNum = 0
+
+            // it : String
+            line.toCharArray().forEach {ch ->
+                // it : Char
+                when(ch){
+                    '1' -> views.add(Wall(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    '2' -> views.add(Steel(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    '3' -> views.add(Grass(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    else -> pass()
+                }
+            }
+        }
 
     }
 
+    // 绘制
     override fun onDisplay() {
         // draw img
-
-        // draw wall
-
-        //draw grass
+        views.forEach { it.draw() }
 
     }
 
@@ -39,5 +64,8 @@ class WindowsGame :Window(
 
     override fun onRefresh() {
     }
+
+
+    private fun pass(){}
 
 }
