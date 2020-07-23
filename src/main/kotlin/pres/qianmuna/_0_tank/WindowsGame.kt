@@ -5,11 +5,12 @@ import javafx.scene.input.KeyEvent
 import org.itheima.kotlin.game.core.Window
 import pres.qianmuna._0_tank.business.AutoMovable
 import pres.qianmuna._0_tank.business.Blockable
-import pres.qianmuna._0_tank.business.Destoryable
+import pres.qianmuna._0_tank.business.Destroyable
 import pres.qianmuna._0_tank.business.Movable
 import pres.qianmuna._0_tank.enums.Direction
 import pres.qianmuna._0_tank.model.*
 import java.io.File
+import java.util.concurrent.CopyOnWriteArrayList
 
 /**
 @author HJC
@@ -26,7 +27,9 @@ class WindowsGame :Window(
     height = Config.HEIGHT){
 
     // 图像容器 root
-    private val views = arrayListOf<View>()
+    // 多线程
+    // juc CopyOnWriteArrayList
+    private val views = CopyOnWriteArrayList<View>()
 
     // my tank
     private lateinit var tank:Tank
@@ -127,8 +130,10 @@ class WindowsGame :Window(
         }
 
         // 销毁
-        views.filter { it is Destoryable }.forEach {des ->
-            views.remove(des)
+        views.filterIsInstance<Destroyable>().forEach {
+            if (it.isDestroyed())
+                views.remove(it)
+
         }
 
 

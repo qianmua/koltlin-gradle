@@ -1,6 +1,7 @@
 package pres.qianmuna._0_tank.business
 
-import javax.swing.text.View
+import pres.qianmuna._0_tank.model.View
+
 
 /**
 @author HJC
@@ -9,8 +10,8 @@ import javax.swing.text.View
 @version 1.0
 谦谦君子 卑以自牧也
  */
-interface Destoryable {
+interface Destroyable : View {
 
-    fun isDestoryed():Boolean
+    fun isDestroyed():Boolean
 
 }
