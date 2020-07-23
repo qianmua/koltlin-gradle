@@ -2,10 +2,10 @@ package pres.qianmuna._0_tank
 
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
-import org.itheima.kotlin.game.core.Painter
 import org.itheima.kotlin.game.core.Window
 import pres.qianmuna._0_tank.business.AutoMovable
 import pres.qianmuna._0_tank.business.Blockable
+import pres.qianmuna._0_tank.business.Destoryable
 import pres.qianmuna._0_tank.business.Movable
 import pres.qianmuna._0_tank.enums.Direction
 import pres.qianmuna._0_tank.model.*
@@ -78,7 +78,7 @@ class WindowsGame :Window(
             KeyCode.D -> tank.moveTank(Direction.RIGHT)
             //attack
             KeyCode.K -> {
-                var bullet = tank.attack()
+                val bullet = tank.attack()
                 // views
                 views.add(bullet)
 
@@ -124,6 +124,11 @@ class WindowsGame :Window(
         views.filterIsInstance<AutoMovable>().forEach {
             // 移动
             it.autoMovable()
+        }
+
+        // 销毁
+        views.filter { it is Destoryable }.forEach {des ->
+            views.remove(des)
         }
 
 

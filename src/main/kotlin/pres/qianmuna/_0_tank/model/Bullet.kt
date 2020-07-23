@@ -2,6 +2,7 @@ package pres.qianmuna._0_tank.model
 
 import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.business.AutoMovable
+import pres.qianmuna._0_tank.business.Destoryable
 import pres.qianmuna._0_tank.enums.Direction
 
 /**
@@ -11,7 +12,10 @@ import pres.qianmuna._0_tank.enums.Direction
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Bullet(override val currentDirection: Direction,create:(width:Int , height:Int) -> Pair<Int , Int>) :AutoMovable {
+class Bullet(
+    override val currentDirection: Direction,
+    create:(width:Int , height:Int) -> Pair<Int , Int>)
+    :AutoMovable,Destoryable {
 
     override var x: Int = 0
     override var y: Int = 0
@@ -64,6 +68,14 @@ class Bullet(override val currentDirection: Direction,create:(width:Int , height
             Direction.RIGHT -> this.x += super.speed
         }
 
+    }
+
+
+    /**
+     * 过期 销毁
+     */
+    override fun isDestoryed(): Boolean {
+        return false
     }
 
 }
