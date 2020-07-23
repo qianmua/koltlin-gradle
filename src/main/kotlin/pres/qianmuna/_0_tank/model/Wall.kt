@@ -2,6 +2,7 @@ package pres.qianmuna._0_tank.model
 
 import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.Config
+import pres.qianmuna._0_tank.business.Blockable
 
 /**
 @author HJC
@@ -10,7 +11,7 @@ import pres.qianmuna._0_tank.Config
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Wall(override val x: Int, override val y: Int) :View{
+class Wall(override val x: Int, override val y: Int) : Blockable{
     // location
 
 

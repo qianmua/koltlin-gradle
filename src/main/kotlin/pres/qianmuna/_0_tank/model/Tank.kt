@@ -2,6 +2,8 @@ package pres.qianmuna._0_tank.model
 
 import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.Config
+import pres.qianmuna._0_tank.business.Blockable
+import pres.qianmuna._0_tank.business.Movable
 import pres.qianmuna._0_tank.enums.Direction
 
 /**
@@ -11,20 +13,25 @@ import pres.qianmuna._0_tank.enums.Direction
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Tank(override var x: Int, override var y: Int) :View {
+class Tank(override var x: Int, override var y: Int) :Movable{
 
     override val width: Int = Config.BLOCK
     override val height: Int= Config.BLOCK
 
     // default direction
-    private var currentDirectin:Direction = Direction.UP
+    override var currentDirection:Direction = Direction.UP
 
     // speed
-    private var speed = 8
+    override var speed = 8
+
+
+    override fun willCollision(block: Blockable): Direction? {
+        TODO("Not yet implemented")
+    }
 
     // up down left right
     override fun draw() {
-        val dir = when(currentDirectin){
+        val dir = when(currentDirection){
             Direction.UP -> "/img...1"
             Direction.DOWN ->"/img...2"
             Direction.LEFT -> "/img...3"
@@ -35,8 +42,8 @@ class Tank(override var x: Int, override var y: Int) :View {
 
     fun moveTank(direction: Direction){
         // change direction
-        if (this.currentDirectin != direction){
-            this.currentDirectin = direction
+        if (this.currentDirection != direction){
+            this.currentDirection = direction
             return
         }
 
@@ -48,7 +55,7 @@ class Tank(override var x: Int, override var y: Int) :View {
             return
 
         // location
-        when(this.currentDirectin){
+        when(this.currentDirection){
 
             Direction.UP -> y -= speed
             Direction.DOWN -> y += speed

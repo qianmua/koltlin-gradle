@@ -4,6 +4,8 @@ import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
 import org.itheima.kotlin.game.core.Painter
 import org.itheima.kotlin.game.core.Window
+import pres.qianmuna._0_tank.business.Blockable
+import pres.qianmuna._0_tank.business.Movable
 import pres.qianmuna._0_tank.enums.Direction
 import pres.qianmuna._0_tank.model.*
 import java.io.File
@@ -22,8 +24,9 @@ class WindowsGame :Window(
     width = Config.WIDTH ,
     height = Config.HEIGHT){
 
-    // 图像
+    // 图像容器 root
     private val views = arrayListOf<View>()
+
     // my tank
     private lateinit var tank:Tank
 
@@ -75,7 +78,28 @@ class WindowsGame :Window(
         }
     }
 
+    // server
     override fun onRefresh() {
+
+        // 判断 是否 碰撞
+
+        // move
+        //block
+        views.filterIsInstance<Movable>()
+            .forEach {mov ->
+                views.filterIsInstance<Blockable>()
+                    .forEach {block ->
+                        // 碰撞
+                        mov as Movable
+                        block as Blockable
+
+                        // 碰撞 方向
+                        val dir = mov.willCollision(block)
+
+                    }
+            }
+
+
     }
 
 
