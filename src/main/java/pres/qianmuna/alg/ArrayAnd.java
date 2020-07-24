@@ -1,5 +1,7 @@
 package pres.qianmuna.alg;
 
+import java.util.ArrayList;
+
 /**
  * @author HJC
  * @version 1.0
@@ -9,5 +11,9 @@ package pres.qianmuna.alg;
  */
 public class ArrayAnd {
 
+    public static void main(String[] args) {
+        new ArrayList<>().size();
+        System.out.println("aaa".length());
+    }
 
 }

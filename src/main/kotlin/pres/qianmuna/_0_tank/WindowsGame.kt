@@ -154,11 +154,8 @@ class WindowsGame :Window(
 
                     return@suf
                 }
-
             }
         }
-
-
     }
 
 
