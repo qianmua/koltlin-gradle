@@ -20,4 +20,7 @@ interface Attackable:View {
      * 通知攻击
      */
     fun notifyAttack(sufferable: Sufferable)
+
+    val attackPower: Int
+        get() = 1
 }

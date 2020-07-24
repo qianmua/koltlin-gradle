@@ -27,6 +27,11 @@ class Bullet(
     override var width: Int = 0
     override var height: Int = 0
 
+    var isDestroy:Boolean = false
+
+    override val attackPower:Int
+        get() = super.attackPower
+
     // 子弹 位置
     private val imgUrl = when(currentDirection){
         Direction.UP -> "..1"
@@ -79,7 +84,9 @@ class Bullet(
      * 过期 销毁
      * 离开 屏幕 销毁
      */
-    override fun isDestroyed(): Boolean = (this.x < this.width
+    override fun isDestroyed(): Boolean = (
+            isDestroy
+            || this.x < this.width
             || this.x > Config.WIDTH
             || this.y < this.height
             || this.y > Config.WIDTH)
@@ -96,7 +103,8 @@ class Bullet(
     override fun notifyAttack(sufferable: Sufferable) {
         // 判断后 会 调用
 
-
+        // 生命周期
+        isDestroy = true
     }
 
 }

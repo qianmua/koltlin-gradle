@@ -15,4 +15,9 @@ interface Sufferable:View {
      * 被攻击
      */
     fun notifySuffer(attackable: Attackable)
+
+    // 默认生命 大小
+    val blood: Int
+        get() = 3
+
 }
