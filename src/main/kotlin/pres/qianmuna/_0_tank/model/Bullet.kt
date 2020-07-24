@@ -5,7 +5,9 @@ import pres.qianmuna._0_tank.Config
 import pres.qianmuna._0_tank.business.Attackable
 import pres.qianmuna._0_tank.business.AutoMovable
 import pres.qianmuna._0_tank.business.Destroyable
+import pres.qianmuna._0_tank.business.Sufferable
 import pres.qianmuna._0_tank.enums.Direction
+import pres.qianmuna._0_tank.ext.checkCollision
 
 /**
 @author HJC
@@ -81,5 +83,20 @@ class Bullet(
             || this.x > Config.WIDTH
             || this.y < this.height
             || this.y > Config.WIDTH)
+
+
+    /**
+     * 判断攻击
+     */
+    override fun isAttacked(sufferable: Sufferable): Boolean = checkCollision(sufferable)
+
+    /**
+     * 通知 攻击 到
+     */
+    override fun notifyAttack(sufferable: Sufferable) {
+        // 判断后 会 调用
+
+
+    }
 
 }

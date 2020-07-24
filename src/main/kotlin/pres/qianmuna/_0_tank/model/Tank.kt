@@ -46,7 +46,11 @@ class Tank(override var x: Int, override var y: Int) :Movable{
 
         }
 
-        val coll = when {
+        // 碰撞检测
+        val coll = checkCollision(block.x, block.y , block.width ,block.height,
+            x,y,this.width , this.height)
+
+        /*val coll = when {
 
             block.y + block.height <= y -> false
 
@@ -55,7 +59,7 @@ class Tank(override var x: Int, override var y: Int) :Movable{
             block.x + block.width <= x -> false
 
             else -> x + this.width > block.x
-        }
+        }*/
 
         return if (coll)
             currentDirection
