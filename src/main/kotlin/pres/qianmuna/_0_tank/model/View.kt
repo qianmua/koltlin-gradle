@@ -14,9 +14,7 @@ import pres.qianmuna._0_tank.enums.Direction
 interface View {
 
     val x:Int
-        get() = 0
     val y:Int
-        get() = 0
 
     val width: Int
         get() = Config.BLOCK

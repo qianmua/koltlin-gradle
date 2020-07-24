@@ -2,6 +2,7 @@ package pres.qianmuna._0_tank
 
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
+import jdk.nashorn.internal.ir.Block
 import org.itheima.kotlin.game.core.Window
 import pres.qianmuna._0_tank.business.*
 import pres.qianmuna._0_tank.enums.Direction
@@ -50,6 +51,8 @@ class WindowsGame :Window(
                     '1' -> views.add(Wall(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
                     '2' -> views.add(Steel(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
                     '3' -> views.add(Grass(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    '4' -> views.add(Water(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    '5' -> views.add(TankEnemy(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
                     else -> pass()
                 }
             }
@@ -100,13 +103,13 @@ class WindowsGame :Window(
                 var badColl:Direction? = null
                 var badBlock:Blockable? = null
 
-                views.filterIsInstance<Blockable>()
+                // 过滤 自己
+                views.filter { (it is Blockable) and ( mov != it) }
                     .forEach blockTag@ {block ->
+                        block as Blockable
                         // 碰撞
-
                         // 碰撞 方向
                         val dir = mov.willCollision(block)
-
                         // 碰撞？ 跳出
                         dir?.let {
                             badColl = dir

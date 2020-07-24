@@ -610,6 +610,19 @@ class Test1 {
     }
 
 
+    @Test
+    fun m18(){
+        val str = when (val r = java.util.Random().nextInt(4)){
+            0 -> "A"
+            1 -> "B"
+            2 -> "C"
+            3 -> "D"
+            else -> "E"
+        }
+        println(str)
+    }
+
+
 
 
     
