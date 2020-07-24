@@ -3,10 +3,7 @@ package pres.qianmuna._0_tank
 import javafx.scene.input.KeyCode
 import javafx.scene.input.KeyEvent
 import org.itheima.kotlin.game.core.Window
-import pres.qianmuna._0_tank.business.AutoMovable
-import pres.qianmuna._0_tank.business.Blockable
-import pres.qianmuna._0_tank.business.Destroyable
-import pres.qianmuna._0_tank.business.Movable
+import pres.qianmuna._0_tank.business.*
 import pres.qianmuna._0_tank.enums.Direction
 import pres.qianmuna._0_tank.model.*
 import java.io.File
@@ -134,7 +131,24 @@ class WindowsGame :Window(
         views.filterIsInstance<Destroyable>().forEach {
             if (it.isDestroyed())
                 views.remove(it)
+        }
 
+        // 检测 攻击 碰撞
+        views.filterIsInstance<Attackable>().forEach { atk ->
+            views.filterIsInstance<Sufferable>().forEach suf@{ suf ->
+                // 产生 碰撞
+                if (atk.isAttacked(suf)){
+
+                    // 通知 碰撞
+                    atk.notifyAttack(suf)
+
+                    // 遭受 攻击
+                    suf.notifySuffer(atk)
+
+                    return@suf
+                }
+
+            }
         }
 
 
