@@ -102,7 +102,6 @@ class Bullet(
      */
     override fun notifyAttack(sufferable: Sufferable) {
         // 判断后 会 调用
-
         // 生命周期
         isDestroy = true
     }

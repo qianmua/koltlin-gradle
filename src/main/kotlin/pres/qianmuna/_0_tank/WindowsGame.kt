@@ -143,7 +143,11 @@ class WindowsGame :Window(
                     atk.notifyAttack(suf)
 
                     // 遭受 攻击
-                    suf.notifySuffer(atk)
+                    val view = suf.notifySuffer(atk)
+                    // 被攻击
+                    view?.let {
+                        views.addAll(view)
+                    }
 
                     return@suf
                 }

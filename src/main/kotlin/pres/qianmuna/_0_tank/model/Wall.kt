@@ -1,5 +1,6 @@
 package pres.qianmuna._0_tank.model
 
+import org.itheima.kotlin.game.core.Composer
 import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.Config
 import pres.qianmuna._0_tank.business.Attackable
@@ -32,9 +33,14 @@ class Wall(override val x: Int, override val y: Int) : Blockable,Sufferable ,Des
     /**
      * 可被攻击
      */
-    override fun notifySuffer(attackable: Attackable) {
+    override fun notifySuffer(attackable: Attackable): Array<View>? {
         //被抓啦~~
         blood -= attackable.attackPower
+
+        // mp3 攻击触发声音
+        Composer.play("...")
+
+        return arrayOf(Boom(x,y))
 
     }
 

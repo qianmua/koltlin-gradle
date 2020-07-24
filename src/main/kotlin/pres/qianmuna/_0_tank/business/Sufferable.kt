@@ -13,11 +13,15 @@ interface Sufferable:View {
 
     /**
      * 被攻击
+     *
+     * @return 攻击 回调
      */
-    fun notifySuffer(attackable: Attackable)
+    fun notifySuffer(attackable: Attackable):Array<View>?
 
     // 默认生命 大小
     val blood: Int
         get() = 3
+
+
 
 }
