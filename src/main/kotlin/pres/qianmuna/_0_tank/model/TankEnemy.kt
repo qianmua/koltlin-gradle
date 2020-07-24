@@ -2,6 +2,7 @@ package pres.qianmuna._0_tank.model
 
 import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.Config
+import pres.qianmuna._0_tank.business.AutoAttack
 import pres.qianmuna._0_tank.business.AutoMovable
 import pres.qianmuna._0_tank.business.Blockable
 import pres.qianmuna._0_tank.business.Movable
@@ -16,18 +17,40 @@ import java.util.*
 谦谦君子 卑以自牧也
  */
 
-class TankEnemy(override var x: Int, override var y: Int):Movable,AutoMovable,Blockable{
+class TankEnemy(
+    override var x: Int, override var y: Int)
+    :Movable,AutoMovable,Blockable,AutoAttack{
 
     override var currentDirection: Direction = Direction.DOWN
 
     // 修改 方向
     private val badDirection:Direction? = null
 
-    override val speed: Int = 1
+    override val speed: Int = 8
+
+    /**
+     * 距离 上次触发时间
+     */
+    private var lastAutoTime = 0L
+
+    /**
+     * 频率
+     */
+    private val attackCD = 700
+
+    private var moveAutoTime = 0L
+
+    private val moveCD = 50
 
 
     override fun autoMovable() {
+        // 检测 cd
+        val millis = System.currentTimeMillis()
+        if (millis - moveAutoTime < moveCD)
+            return
+        moveAutoTime = millis
 
+        // 方向 重叠
         if (currentDirection == badDirection){
             currentDirection = randomDirection(badDirection)
             return
@@ -91,5 +114,44 @@ class TankEnemy(override var x: Int, override var y: Int):Movable,AutoMovable,Bl
 
     }
 
+    /**
+     * 自动 攻击
+     */
+    override fun autoAttack(): View? {
+        // 检测 cd
+        val millis = System.currentTimeMillis()
+        if (millis - lastAutoTime < attackCD)
+            return null
+        lastAutoTime = millis
+
+
+
+        return Bullet(currentDirection){ bW , bH ->
+            var bX = 0
+            var bY = 0
+            val tW = this.width
+            val tH = this.height
+
+            when(currentDirection){
+                Direction.UP -> {
+                    bX = this.x + (tW - bW) / 2
+                    bY = this.y - bH / 2
+                }
+                Direction.DOWN -> {
+                    bX = this.x + (tW - bW) / 2
+                    bY = this.y + tH - bH / 2
+                }
+                Direction.RIGHT -> {
+                    bX = this.x + tW - bW / 2
+                    bY = this.y + (tH - bH) / 2
+                }
+                Direction.LEFT -> {
+                    bX = this.x - bX / 2
+                    bY = this.y + (tH + bH) / 2
+                }
+            }
+            Pair(bX , bY)
+        }
+    }
 
 }

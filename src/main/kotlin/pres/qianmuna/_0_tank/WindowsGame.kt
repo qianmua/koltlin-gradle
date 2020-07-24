@@ -156,6 +156,15 @@ class WindowsGame :Window(
                 }
             }
         }
+
+        // 检测 自动射击
+        // 容器 管理
+        views.filterIsInstance<AutoAttack>().forEach {
+            val autoAttack = it.autoAttack()
+            autoAttack?.let {
+                views.add(autoAttack)
+            }
+        }
     }
 
 
