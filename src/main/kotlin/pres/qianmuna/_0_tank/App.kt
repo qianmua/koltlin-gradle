@@ -9,6 +9,7 @@ import javafx.application.Application
 @version 1.0
 谦谦君子 卑以自牧也
  */
+
 open class App
 
 fun main() {

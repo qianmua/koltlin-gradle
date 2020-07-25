@@ -7,7 +7,9 @@ import org.itheima.kotlin.game.core.Window
 import pres.qianmuna._0_tank.business.*
 import pres.qianmuna._0_tank.enums.Direction
 import pres.qianmuna._0_tank.model.*
+import java.io.BufferedReader
 import java.io.File
+import java.io.InputStreamReader
 import java.util.concurrent.CopyOnWriteArrayList
 
 /**
@@ -48,10 +50,13 @@ class WindowsGame :Window(
         // map create
 
         // read config
-        val file = File(javaClass.getResource("/map/1.map").path)
+        // 打包路径 找不到 的问题
+//        val file = File(javaClass.getResource("/map/1.map").path)
+        val stream = javaClass.getResourceAsStream("...")
+        val reader = BufferedReader(InputStreamReader(stream , "utf-8"))
 
         // read line
-        val lines = file.readLines()
+        val lines = reader.readLines()
         var lineNum = 0
         lines.forEach { line ->
             var columnNum = 0
