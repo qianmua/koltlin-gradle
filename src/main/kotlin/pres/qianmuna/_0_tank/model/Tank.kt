@@ -2,8 +2,10 @@ package pres.qianmuna._0_tank.model
 
 import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.Config
+import pres.qianmuna._0_tank.business.Attackable
 import pres.qianmuna._0_tank.business.Blockable
 import pres.qianmuna._0_tank.business.Movable
+import pres.qianmuna._0_tank.business.Sufferable
 import pres.qianmuna._0_tank.enums.Direction
 
 /**
@@ -13,7 +15,9 @@ import pres.qianmuna._0_tank.enums.Direction
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Tank(override var x: Int, override var y: Int) :Movable{
+class Tank(override var x: Int, override var y: Int) :Movable,Blockable,Sufferable{
+
+    override var blood: Int = 5
 
     override val width: Int = Config.BLOCK
     override val height: Int= Config.BLOCK
@@ -148,6 +152,16 @@ class Tank(override var x: Int, override var y: Int) :Movable{
 
         }
 
+    }
+
+
+    /**
+     * 可被 攻击
+     */
+    override fun notifySuffer(attackable: Attackable): Array<View>? {
+        this.blood -= attackable.attackPower
+
+        return arrayOf(Boom(this.x , this.y))
     }
 
 

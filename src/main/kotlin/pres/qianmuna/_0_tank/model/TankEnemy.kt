@@ -2,10 +2,7 @@ package pres.qianmuna._0_tank.model
 
 import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.Config
-import pres.qianmuna._0_tank.business.AutoAttack
-import pres.qianmuna._0_tank.business.AutoMovable
-import pres.qianmuna._0_tank.business.Blockable
-import pres.qianmuna._0_tank.business.Movable
+import pres.qianmuna._0_tank.business.*
 import pres.qianmuna._0_tank.enums.Direction
 import java.util.*
 
@@ -19,7 +16,7 @@ import java.util.*
 
 class TankEnemy(
     override var x: Int, override var y: Int)
-    :Movable,AutoMovable,Blockable,AutoAttack{
+    :Movable,AutoMovable,Blockable,AutoAttack,Sufferable{
 
     override var currentDirection: Direction = Direction.DOWN
 
@@ -27,6 +24,8 @@ class TankEnemy(
     private val badDirection:Direction? = null
 
     override val speed: Int = 8
+
+    override var blood: Int = 4
 
     /**
      * 距离 上次触发时间
@@ -41,7 +40,6 @@ class TankEnemy(
     private var moveAutoTime = 0L
 
     private val moveCD = 50
-
 
     override fun autoMovable() {
         // 检测 cd
@@ -152,6 +150,14 @@ class TankEnemy(
             }
             Pair(bX , bY)
         }
+    }
+
+    /**
+     * 被攻击
+     */
+    override fun notifySuffer(attackable: Attackable): Array<View>? {
+        this.blood -= attackable.attackPower
+        return arrayOf(Boom(this.x , this.y))
     }
 
 }
