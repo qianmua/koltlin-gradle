@@ -200,7 +200,7 @@ class WindowsGame :Window(
         }
 
         // 敌方 出生
-        if (views.filterIsInstance<TankEnemy>().size < enemyActiveSize){
+        if ( (enemyTotalSize > 0) and (views.filterIsInstance<TankEnemy>().size < enemyActiveSize) ){
             val pair = enemyLocation[bornIndex++ % enemyLocation.size]
             views.add(TankEnemy(pair.first , pair.second))
         }
