@@ -48,18 +48,28 @@ class WindowsGame :Window(
             line.toCharArray().forEach {ch ->
                 // it : Char
                 when(ch){
+                    // 墙
                     '1' -> views.add(Wall(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    // 铁
                     '2' -> views.add(Steel(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    // 艹
                     '3' -> views.add(Grass(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    // 水
                     '4' -> views.add(Water(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    // 敌
                     '5' -> views.add(TankEnemy(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
                     else -> pass()
                 }
             }
         }
 
+        // 我方
         tank = Tank(Config.BLOCK * 10, Config.BLOCK * 12)
         views.add(tank)
+
+        // home
+        val home = Home(Config.WIDTH / 2 - Config.BLOCK , Config.HEIGHT - 96)
+        views.add(home)
 
     }
 
