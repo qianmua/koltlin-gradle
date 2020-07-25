@@ -27,7 +27,7 @@ class Home(override var x: Int, override var y: Int)
      * 绘制 home
      */
     override fun draw()  = when {
-        this.blood < 4 -> {
+        this.blood <= 4 -> {
             // 修改 块
             this.width = Config.BLOCK
             this.height = Config.BLOCK
@@ -35,7 +35,7 @@ class Home(override var x: Int, override var y: Int)
             this.y = Config.HEIGHT - Config.BLOCK
             Painter.drawImage("home", this.x + 32, this.y + 32)
         }
-        this.blood < 8 -> drawHome("path1")
+        this.blood <= 8 -> drawHome("path1")
         else -> drawHome("path2")
     }
 
@@ -59,7 +59,7 @@ class Home(override var x: Int, override var y: Int)
        this.blood -= attackable.attackPower
         if (this.blood == 4 || this.blood == 8)
             return arrayOf(Boom(x , y))
-        return
+        return null
     }
 
 }

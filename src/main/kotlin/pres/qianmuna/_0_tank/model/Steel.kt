@@ -2,7 +2,9 @@ package pres.qianmuna._0_tank.model
 
 import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.Config
+import pres.qianmuna._0_tank.business.Attackable
 import pres.qianmuna._0_tank.business.Blockable
+import pres.qianmuna._0_tank.business.Sufferable
 
 /**
 @author HJC
@@ -11,7 +13,8 @@ import pres.qianmuna._0_tank.business.Blockable
 @version 1.0
 谦谦君子 卑以自牧也
  */
-class Steel(override val x: Int, override val y: Int) :Blockable {
+class Steel(override val x: Int, override val y: Int) :Blockable,Sufferable {
+
     // location
 
 
@@ -23,4 +26,11 @@ class Steel(override val x: Int, override val y: Int) :Blockable {
     override fun draw(){
         Painter.drawImage("" , x , y)
     }
+
+    /**
+     * 不被 攻击
+     */
+    override fun notifySuffer(attackable: Attackable): Array<View>? = null
+
+
 }
