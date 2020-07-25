@@ -12,6 +12,11 @@ import pres.qianmuna._0_tank.model.View
 interface Attackable:View {
 
     /**
+     * 拥有者
+     */
+    val owner:View
+
+    /**
      * 判断碰撞
      */
     fun isAttacked(sufferable: Sufferable):Boolean
@@ -23,4 +28,6 @@ interface Attackable:View {
 
     val attackPower: Int
         get() = 1
+
+
 }

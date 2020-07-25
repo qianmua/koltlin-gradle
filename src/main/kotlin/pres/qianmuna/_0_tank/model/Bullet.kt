@@ -17,6 +17,7 @@ import pres.qianmuna._0_tank.ext.checkCollision
 谦谦君子 卑以自牧也
  */
 class Bullet(
+    override val owner: View,
     override val currentDirection: Direction,
     create:(width:Int , height:Int) -> Pair<Int , Int>)
     :AutoMovable,Destroyable ,Attackable {

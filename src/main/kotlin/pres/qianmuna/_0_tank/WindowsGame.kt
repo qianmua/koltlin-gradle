@@ -137,8 +137,13 @@ class WindowsGame :Window(
         }
 
         // 检测 攻击 碰撞
-        views.filterIsInstance<Attackable>().forEach { atk ->
-            views.filterIsInstance<Sufferable>().forEach suf@{ suf ->
+        views.filterIsInstance<Attackable>()
+            .forEach { atk ->
+            views.filterIsInstance<Sufferable>()
+                    // 过滤 自己
+                    // 自己打自己。。。。
+                .filter { atk.owner != it }
+                .forEach suf@{ suf ->
                 // 产生 碰撞
                 if (atk.isAttacked(suf)){
 

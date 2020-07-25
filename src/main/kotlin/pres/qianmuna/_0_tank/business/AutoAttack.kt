@@ -1,6 +1,5 @@
 package pres.qianmuna._0_tank.business
 
-import pres.qianmuna._0_tank.model.Bullet
 import pres.qianmuna._0_tank.model.View
 
 /**

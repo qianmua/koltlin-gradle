@@ -16,7 +16,8 @@ import java.util.*
 
 class TankEnemy(
     override var x: Int, override var y: Int)
-    :Movable,AutoMovable,Blockable,AutoAttack,Sufferable{
+    :Movable,AutoMovable,Blockable,AutoAttack,Sufferable,Destroyable{
+
 
     override var currentDirection: Direction = Direction.DOWN
 
@@ -124,7 +125,7 @@ class TankEnemy(
 
 
 
-        return Bullet(currentDirection){ bW , bH ->
+        return Bullet(this,currentDirection){ bW , bH ->
             var bX = 0
             var bY = 0
             val tW = this.width
@@ -156,8 +157,19 @@ class TankEnemy(
      * 被攻击
      */
     override fun notifySuffer(attackable: Attackable): Array<View>? {
+        // 同源 不掉血
+        if(attackable.owner is TankEnemy)
+            return null
+
         this.blood -= attackable.attackPower
         return arrayOf(Boom(this.x , this.y))
     }
+
+
+    /**
+     * 销毁
+     */
+    override fun isDestroyed(): Boolean = this.blood <= 0
+
 
 }

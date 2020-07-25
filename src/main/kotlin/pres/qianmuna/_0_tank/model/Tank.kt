@@ -82,7 +82,7 @@ class Tank(override var x: Int, override var y: Int) :Movable,Blockable,Sufferab
     /**
      * 发射子弹
      */
-    override fun attack(): Bullet = Bullet(this.currentDirection ){ bW , bH ->
+    override fun attack(): Bullet = Bullet(this,this.currentDirection ){ bW , bH ->
         var bX = 0
         var bY = 0
         val tW = this.width
