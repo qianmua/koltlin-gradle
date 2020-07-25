@@ -12,6 +12,14 @@ import pres.qianmuna._0_tank.model.View
  */
 interface Destroyable : View {
 
+    /**
+     * 是否销毁
+     */
     fun isDestroyed():Boolean
+
+    /**
+     * deal
+     */
+    fun showDestory():Array<View>?{return null}
 
 }

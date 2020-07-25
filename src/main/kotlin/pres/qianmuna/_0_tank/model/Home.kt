@@ -4,6 +4,7 @@ import org.itheima.kotlin.game.core.Painter
 import pres.qianmuna._0_tank.Config
 import pres.qianmuna._0_tank.business.Attackable
 import pres.qianmuna._0_tank.business.Blockable
+import pres.qianmuna._0_tank.business.Destroyable
 import pres.qianmuna._0_tank.business.Sufferable
 
 /**
@@ -15,7 +16,7 @@ import pres.qianmuna._0_tank.business.Sufferable
  */
 
 class Home(override var x: Int, override var y: Int)
-    :View,Blockable,Sufferable{
+    :View,Blockable,Sufferable,Destroyable {
 
     override var blood: Int = 12
 
@@ -26,7 +27,7 @@ class Home(override var x: Int, override var y: Int)
     /**
      * 绘制 home
      */
-    override fun draw()  = when {
+    override fun draw() = when {
         this.blood <= 4 -> {
             // 修改 块
             this.width = Config.BLOCK
@@ -39,7 +40,7 @@ class Home(override var x: Int, override var y: Int)
         else -> drawHome("path2")
     }
 
-    private fun drawHome(path:String) {
+    private fun drawHome(path: String) {
         // 绘制 围墙
         for (i in 0..3) {
             Painter.drawImage(path, this.x + 32 * i, this.y)
@@ -56,10 +57,19 @@ class Home(override var x: Int, override var y: Int)
      * 被攻击
      */
     override fun notifySuffer(attackable: Attackable): Array<View>? {
-       this.blood -= attackable.attackPower
+        this.blood -= attackable.attackPower
         if (this.blood == 4 || this.blood == 8)
-            return arrayOf(Boom(x , y))
+            return arrayOf(Boom(x, y))
         return null
     }
+
+    override fun isDestroyed(): Boolean = this.blood <= 0
+
+
+    override fun showDestory(): Array<View>? = arrayOf(Boom(x - 32 , y - 32)
+        ,Boom(x , y - 32),Boom(x + 32 , y - 32)
+        ,Boom(x - 32 , y), Boom(x  , y ),Boom(x + 32, y)
+        ,Boom(x - 32 , y + 32), Boom(x  , y + 32 ),Boom(x + 32, y + 32)
+    )
 
 }

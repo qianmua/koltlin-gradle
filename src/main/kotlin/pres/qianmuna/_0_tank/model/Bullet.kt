@@ -20,10 +20,12 @@ class Bullet(
     override val owner: View,
     override val currentDirection: Direction,
     create:(width:Int , height:Int) -> Pair<Int , Int>)
-    :AutoMovable,Destroyable ,Attackable {
+    :AutoMovable,Destroyable ,Attackable,Sufferable {
 
     override var x: Int = 0
     override var y: Int = 0
+
+    override val blood: Int = 1
 
     override var width: Int = 0
     override var height: Int = 0
@@ -106,5 +108,11 @@ class Bullet(
         // 生命周期
         isDestroy = true
     }
+
+    /**
+     * 子弹 对线
+     */
+    override fun notifySuffer(attackable: Attackable): Array<View>?  = arrayOf(Boom(this.x , this.y))
+
 
 }

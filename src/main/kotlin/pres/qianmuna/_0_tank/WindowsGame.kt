@@ -32,6 +32,9 @@ class WindowsGame :Window(
     // my tank
     private lateinit var tank:Tank
 
+    // 游戏结束
+    private var gameovre = false
+
     override fun onCreate() {
         // map create
 
@@ -83,6 +86,9 @@ class WindowsGame :Window(
 
     override fun onKeyPressed(event: KeyEvent) {
 
+        if (gameovre)
+            return
+
         // move tank // dir
         when(event.code){
             KeyCode.W -> tank.moveTank(Direction.UP)
@@ -101,6 +107,19 @@ class WindowsGame :Window(
 
     // server
     override fun onRefresh() {
+
+        // 销毁
+        // attack destroy
+        views.filterIsInstance<Destroyable>().forEach {
+            if (it.isDestroyed())
+                views.remove(it)
+            val destroy = it.showDestory()
+            destroy?.let { views.addAll(destroy) }
+        }
+
+        // 结束 游戏
+        if (gameovre)
+            return
 
         // 判断 是否 碰撞
 
@@ -139,20 +158,13 @@ class WindowsGame :Window(
             it.autoMovable()
         }
 
-        // 销毁
-        // attack destroy
-        views.filterIsInstance<Destroyable>().forEach {
-            if (it.isDestroyed())
-                views.remove(it)
-        }
-
         // 检测 攻击 碰撞
         views.filterIsInstance<Attackable>()
             .forEach { atk ->
             views.filterIsInstance<Sufferable>()
                     // 过滤 自己
                     // 自己打自己。。。。
-                .filter { atk.owner != it }
+                .filter { (atk.owner != it) and (atk != it) }
                 .forEach suf@{ suf ->
                 // 产生 碰撞
                 if (atk.isAttacked(suf)){
@@ -180,6 +192,9 @@ class WindowsGame :Window(
                 views.add(autoAttack)
             }
         }
+
+        if (views.filterIsInstance<Home>().isEmpty())
+            gameovre  = true
     }
 
 
