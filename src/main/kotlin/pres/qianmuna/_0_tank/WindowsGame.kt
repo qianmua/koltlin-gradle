@@ -35,6 +35,15 @@ class WindowsGame :Window(
     // 游戏结束
     private var gameovre = false
 
+    // 最大 敌人数
+    private var enemyTotalSize = 15
+    // 激活数
+    private var enemyActiveSize = 5
+    // 出生点
+    private val enemyLocation = arrayListOf<Pair<Int, Int>>()
+    // 出生点 轮询
+    private var bornIndex = 0
+
     override fun onCreate() {
         // map create
 
@@ -60,7 +69,7 @@ class WindowsGame :Window(
                     // 水
                     '4' -> views.add(Water(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
                     // 敌
-                    '5' -> views.add(TankEnemy(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
+                    '5' -> enemyLocation.add(Pair(columnNum++ * Config.BLOCK , lineNum++ * Config.BLOCK))
                     else -> pass()
                 }
             }
@@ -111,8 +120,14 @@ class WindowsGame :Window(
         // 销毁
         // attack destroy
         views.filterIsInstance<Destroyable>().forEach {
+
             if (it.isDestroyed())
                 views.remove(it)
+
+            // 敌方 容器
+            if (it is TankEnemy)
+                enemyTotalSize --
+
             val destroy = it.showDestory()
             destroy?.let { views.addAll(destroy) }
         }
@@ -184,6 +199,12 @@ class WindowsGame :Window(
             }
         }
 
+        // 敌方 出生
+        if (views.filterIsInstance<TankEnemy>().size < enemyActiveSize){
+            val pair = enemyLocation[bornIndex++ % enemyLocation.size]
+            views.add(TankEnemy(pair.first , pair.second))
+        }
+
         // 检测 自动射击
         // 容器 管理
         views.filterIsInstance<AutoAttack>().forEach {
@@ -192,8 +213,8 @@ class WindowsGame :Window(
                 views.add(autoAttack)
             }
         }
-
-        if (views.filterIsInstance<Home>().isEmpty())
+        // game over
+        if ( (views.filterIsInstance<Home>().isEmpty()) or ( enemyTotalSize <= 0) )
             gameovre  = true
     }
 
