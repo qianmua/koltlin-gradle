@@ -14,6 +14,11 @@
     ///
     线程 对应 连接 // session
     
+    
+    连接： tcp
+        长连接
+
+    
 > 查看 连接 数
 
     show global status like 'Thread%';
@@ -39,7 +44,7 @@
     
 ## 组件 
 
-    一条sql 执行过程？
+## 一条sql 查询执行过程？
     
     
 > 缓存
@@ -92,7 +97,7 @@
     
 > 执行器
 
-    存储 引擎 api
+    操作 存储 引擎 api(读写 接口)
     
             
 ## 数据库引擎
@@ -113,7 +118,96 @@
     查询快 持久
     历史表 归档
     读写 并发 一致性
-        
+    
+    
+## 更新 语句 如何 执行？
 
+    包括 update insert delete
+    
+> 操作 一条数据
+
+    调用 api 拿到原始数据到 内存
+    
+    在 server 层 处理
+    
+    拿到 的 数据 大小?
+    
+    预读 读取 固定 大小：
+        page 页
+        默认 大小 16k
+    
+>缓存 IO 缓冲区     （innodb）
+
+    show variables like 'innodb_buffer_pool';
+    (影响 数据库 性能 io 量)
+    
+    减少 io
+    
+    提升 效率、
+    
+    先 写入 内存 缓冲   
+    
+> 脏数据  dirty
+
+    在 缓冲 区中 没有 同步 到 磁盘
+    
+    // 刷脏 过程 宕机？
+    
+    日志
+    写入 缓冲的 数据 记录到 日志
+    redo log  // 崩溃恢复
+    //
+    写入 日志 与 写入 磁盘区别
+    // 随机 IO // 磁盘 寻址 找到 对应的页
+    // 顺序 IO // redo log 不考虑 寻址消费 直接 追加到 文件
+    
+    记录数据页改动
+    大小固定（前面 会 擦除）
+    写满会 触发一次 同步
     
     
+    事务 日志
+    undo log
+    撤销日志
+    DML 修改 发生 之前 的状态 （update insert delete）
+
+    可以 进行 回滚 操作
+    实现 原子性
+    
+    大小 默认 1G
+    
+    
+> eg:
+    
+    disk -> innodb buffer pool -> server
+    
+    写入 ——> 记录 undo log 、redo log               
+    写入 buffer pool
+    commit
+    等待 刷脏
+    
+    
+> buffer pool
+
+    data
+    
+    change buffer
+    
+        非唯一索引
+        一次性 全部 写入 
+        // 提高 效率 
+        （唯一索引 需要 校验 判断 为例）        
+        
+> log buffer
+
+    -> erdo log    
+    
+    
+> buffer 写满了 ？
+
+    LRU 算法 // 最近使用
+    冷热 分离 链表  // 类似 java堆
+    
+        
+        
+        
