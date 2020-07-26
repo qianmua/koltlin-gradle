@@ -42,7 +42,7 @@
     // show 默认 session
     
     
-## 组件 
+## 模块 
 
 ## 一条sql 查询执行过程？
     
@@ -205,8 +205,71 @@
     
 > buffer 写满了 ？
 
-    LRU 算法 // 最近使用
+    LRU 算法(改良) // 最近使用
     冷热 分离 链表  // 类似 java堆
+    
+    （redis 同样 使用 到 LRU LFU ..）
+
+
+## service 层 日志
+
+    binlog 二进制 日志 （DDL DML） 语句
+    无固定大小
+    service实现 所有储存引擎 都可使用
+    
+    作用：
+    
+    主从 复制
+    数据 恢复
+    
+> 主从         
+
+    读写 分离
+    
+    // 从节点 刷新 最新 数据
+    
+    依赖 主节点 binlog
+    
+    从节点 同步 binlog （DML语句）
+    执行 同步数据
+    
+    
+> 数据恢复（定时备份）
+
+    全量备份 
+    。。
+    删库了。。。
+    
+    先恢复 到全量备份 时候 
+    然后 解析 binlog
+    重新 执行 到 删库 之前
+    
+
+> 流程
+
+    cilent ——> service -> update (innodb) -> buffer pool -> redo log 并标记 prepare 、 undo log
+    ——> 开始commit -> 写入 binlog ——> commit -> redo log 标记 提交commit
+    
+    // redo log 、 bin log
+    
+    两阶段 提交
+    
+    解决 不一致 问题 
+    binlog 写入 失败  事务 消失
+    //
+    bin log 未写入 回滚 保证 数据 一致
+    bin log 写入 undo 状态 没更新 需要 提交 保证 一致
+    
+    
+        
+    
+    
+       
+    
+    
+    
+    
+    
     
         
         
