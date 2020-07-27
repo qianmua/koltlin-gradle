@@ -17,6 +17,7 @@
     
     连接： tcp
         长连接
+        同步
 
     
 > 查看 连接 数
@@ -247,7 +248,7 @@
 
 > 流程
 
-    cilent ——> service -> update (innodb) -> buffer pool -> redo log 并标记 prepare 、 undo log
+    cilent ——> service -> update (innodb) -> buffer pool -> redo log 并标记 prepare 、 (事务 开始前 记录)undo log
     ——> 开始commit -> 写入 binlog ——> commit -> redo log 标记 提交commit
     
     // redo log 、 bin log
@@ -257,8 +258,11 @@
     解决 不一致 问题 
     binlog 写入 失败  事务 消失
     //
-    bin log 未写入 回滚 保证 数据 一致
+    bin log 未写入 回滚（undo log） 保证 数据 一致
     bin log 写入 undo 状态 没更新 需要 提交 保证 一致
+    
+    
+    
     
     
         
