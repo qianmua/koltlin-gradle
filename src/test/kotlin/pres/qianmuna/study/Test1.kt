@@ -620,6 +620,10 @@ class Test1 {
             else -> "E"
         }
         println(str)
+
+        for (i in 1..10){
+            println(i)
+        }
     }
 
 
