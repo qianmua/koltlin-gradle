@@ -19,5 +19,9 @@ public class ListTest1 {
         list.add(3);
         list.add(2);
         System.out.println(list.contains(2));
+        int a = 1;
+        Integer b = 1;
+        System.out.println(a == b);
+        System.out.println(b.equals(a));
     }
 }
