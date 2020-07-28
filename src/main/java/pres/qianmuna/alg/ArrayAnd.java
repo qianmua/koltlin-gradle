@@ -12,8 +12,13 @@ import java.util.ArrayList;
 public class ArrayAnd {
 
     public static void main(String[] args) {
-        new ArrayList<>().size();
-        System.out.println("aaa".length());
+//        new ArrayList<>().size();
+//        System.out.println("aaa".length());
+
+        char c1 = 'A' + 'B';
+        char c2 = 65;
+        System.out.println(c1);
+        System.out.println(c2);
     }
 
 }
