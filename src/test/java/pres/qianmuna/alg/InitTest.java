@@ -2,6 +2,7 @@ package pres.qianmuna.alg;
 
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -9,7 +10,6 @@ import java.util.Arrays;
 /**
  * @author HJC
  * @version 1.0
- * 谦谦君子 卑以自牧也
  * @date 2020/7/18  23:36
  * @description :
  */
@@ -101,6 +101,22 @@ public class InitTest {
                     ", sex='" + sex + '\'' +
                     '}';
         }
+    }
+
+
+    @Test
+    public void m3(){
+        byte a1 = 'Z';
+        byte a2 = (byte)'Z';
+
+        int 好的  = 234;
+
+        String  str = "罗长姑姑噶哈哈哈a";
+        byte[] sb = str.getBytes();
+
+        System.out.println(new String(sb , StandardCharsets.UTF_8));
+        System.out.println(new String(sb));
+
     }
 
 }

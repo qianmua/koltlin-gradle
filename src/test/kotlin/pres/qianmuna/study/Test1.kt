@@ -624,6 +624,9 @@ class Test1 {
         for (i in 1..10){
             println(i)
         }
+
+
+        println(0.1 + 0.2)
     }
 
 

@@ -16,6 +16,7 @@ dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
     implementation("org.jsoup:jsoup:1.12.1")
+    implementation("org.springframework:spring-jdbc:5.2.5.RELEASE")
 
     //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
     implementation("org.jetbrains.kotlinx" , "kotlinx-coroutines-core" , "1.2.1")
