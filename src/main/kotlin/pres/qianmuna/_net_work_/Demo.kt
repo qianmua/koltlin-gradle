@@ -23,7 +23,7 @@ class Demo {
         }
 
         private const val url = "http://wallpaper.apc.360.cn/index.php?c=WallPaper&start=85&count=12&from=360chrome&a=getAppsByCategory&cid=6"
-        fun UrlConnTest(){
+        fun test(){
             var conn:HttpURLConnection? = null
             conn = URL(url).openConnection() as? HttpURLConnection
 
@@ -41,5 +41,5 @@ class Demo {
 }
 
 fun main() {
-    Demo.UrlConnTest()
+    Demo.test()
 }
