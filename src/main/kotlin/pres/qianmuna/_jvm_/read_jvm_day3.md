@@ -55,7 +55,7 @@
     并行 多线程 收集器
     关注于 吞吐量
     
-## parallel Old
+## parallel old
 
     老年代
     标记整理
@@ -134,6 +134,7 @@
     最大支持TB级别内存
     压缩算法
     
+**parallel 和 parallel old**
     
     
 ## 使用
@@ -181,6 +182,16 @@
     -Xmx50m = -XX:MaxHeapSize=50m
     
     -Xss1M = -XX:ThreadStackSize= 1m
+    
+    // print // 打印 指令
+    -XX:+PrintFlagsFinal 
+    // 带 : 就是 修改过的
+    
+    常用：
+    OldSize
+    MetaspaceSize
+    maxMetaspaecSize
+    搜搜引擎吧..记不住
     
     
     

@@ -119,4 +119,11 @@ public class InitTest {
 
     }
 
+    @Test
+    public void m4(){
+        /*switch (false){
+
+        }*/
+    }
+
 }
