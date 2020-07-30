@@ -124,6 +124,17 @@ public class InitTest {
         /*switch (false){
 
         }*/
+
+        ArrayList<Integer> list = new ArrayList<Integer>() {{
+            add(2);
+            add(3);
+            add(4);
+        }};
+
+        for (Integer integer : list) {
+            integer = 1;
+            System.out.println(integer);
+        }
     }
 
 }
