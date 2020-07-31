@@ -28,3 +28,20 @@ class Test2 {
 
     }
 }
+
+open class A{
+    fun m2(){}
+}
+open class B :A(){
+    fun m3(){}
+}
+open class C :B(){
+    fun m4(){
+
+    }
+}
+
+class D:C(){
+    fun m1(){
+    }
+}
