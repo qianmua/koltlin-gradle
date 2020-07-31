@@ -69,9 +69,72 @@
     
 > list 
 
+    key value
     
+    value 是一个 链表
+    
+    lpush // l left
+    rpush // r right
+    lpop
+    rpop
+    lrange  // 区间 取值
+    blpop   // 阻塞 // 直到 有
+    brpop   // 阻塞 // 做 消息监听
+    
+    // 数据解构
+    // stack lpush + lpop   FILO
+    // queue lpush + rpop   DILO
+    // blocking MQ lpush brpop 
 
 
+    公众号消息 （消息流） // 新发的 在 最前面
+    // redis 实现
+    // FILO
+    // LPUSH msg:{userKey} 文章 id
+    // LPUSH msg:{userKey} 文章 ID
+    // LRANGE userKey 0 4 // 从 指定 区间 取出
+    
+    // BLPOP key tomeout // 取 阻塞 等待。。。 秒
+    // BLPOP key tomeout
+    
+**redis pipeline 批量执行操作**
+
+> set
+
+    sadd key m[m1,m2,m3] // 放入 一批元素 (key 不存在 自动创建)
+    srem key m  删
+    smembers key  获取 key 所有 元素  
+    scard key   获取 key 个数
+    sismember key m 判断是否在key
+    
+    （随机的）
+    SRANDMEMBER key [count] / SPOP key [count] 选出 count 不从key删除 
+    spop key  count  选出 count 从key删除
+    
+    
+    //运算操作
+    交集
+    并集
+    差集
+    
+    
+    // 场景
+    抽奖
+    sadd key{userID}
+    // 查看参与
+    smembers userID
+    //抽奖
+    SRANDMEMBER key [count] / SPOP key [count]
+    
+    点赞 收藏 标签
+    sadd like:{id} {userId}
+    serm
+    // 点赞过？
+    // 点赞 列表
+    // 点赞数
+    
+    
+    
     
 
 
