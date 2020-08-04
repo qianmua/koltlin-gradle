@@ -20,6 +20,10 @@ dependencies {
     //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
     implementation("org.jetbrains.kotlinx" , "kotlinx-coroutines-core" , "1.2.1")
 
+    //compile group: 'com.alibaba.csp', name: 'sentinel-core', version: '1.7.2'
+    // https://mvnrepository.com/artifact/com.alibaba.nacos/nacos-client
+    //compile group: 'com.alibaba.nacos', name: 'nacos-client', version: '1.3.1'
+
     testCompile("junit", "junit", "4.12")
 
     compile("com.github.shaunxiao" , "kotlinGameEngine" , "v0.0.1")
