@@ -19,6 +19,9 @@ dependencies {
     implementation("org.springframework:spring-jdbc:5.2.5.RELEASE")
     //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
     implementation("org.jetbrains.kotlinx" , "kotlinx-coroutines-core" , "1.2.1")
+    // kafka
+    // org.springframework:spring-kafka:2.2.7.RELEASE
+    implementation("org.springframework.kafka:spring-kafka:2.2.7.RELEASE")
 
     //compile group: 'com.alibaba.csp', name: 'sentinel-core', version: '1.7.2'
     // https://mvnrepository.com/artifact/com.alibaba.nacos/nacos-client
