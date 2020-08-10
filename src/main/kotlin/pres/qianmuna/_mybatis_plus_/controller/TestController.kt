@@ -1,5 +1,7 @@
 package pres.qianmuna._mybatis_plus_.controller
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
+import com.baomidou.mybatisplus.core.metadata.TableFieldInfo
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -85,11 +87,52 @@ open class TestController {
         page.hasNext() // 有无下一页
         page.hasPrevious() // 有无下一页
 
-
-
-
         return "success"
     }
+
+    @GetMapping("/testDelete")
+    fun testDel():String{
+        userMapper.deleteById(100)
+
+        userMapper.deleteBatchIds(listOf(1,23,4,5,6))
+
+        return "1"
+    }
+
+
+    @GetMapping("/testWrapper")
+    fun testWrapper():String{
+        val pper = QueryWrapper<UserDO>()
+        //ge gt le lt
+        pper.ge("age" , 30)
+        val selectList = userMapper.selectList(pper)
+
+        //eq ne
+
+        // between notBetween
+        pper.between("age" , 10 , 20)
+
+        //like
+        pper.like("test" , "哈哈哈")
+
+        //or and
+
+        // orderByDesc
+
+
+        // last // 拼接 到 sql 最后
+
+
+        //查指定列
+        pper.select("id" , "name")
+        // 以 test 开头得列
+        pper.select{ it.property.startsWith("test")}
+//        pper.select(TableFieldInfo::isCharSequence)
+
+
+        return "1"
+    }
+
 
 
 }

@@ -27,4 +27,9 @@ data class UserDO (
     @TableField( fill = FieldFill.INSERT_UPDATE)
     private val gmtModified:Date? = Date() ,
     @Version
-    private val version:Int? = 0)
+    private val version:Int? = 0,
+
+    @TableLogic
+    // 0 1(d)
+    private val deleted:Int? = 0
+)
