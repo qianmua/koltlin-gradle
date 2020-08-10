@@ -15,6 +15,7 @@ import kotlin.reflect.typeOf
  */
 
 class Test1 {
+/*
 
     @Test
     fun m1() {
@@ -183,7 +184,9 @@ class Test1 {
         println(100 xor 20)
 
         val a1 = "100"
-        val a2 = a1.toIntOrNull() /*?: -1*/
+        val a2 = a1.toIntOrNull() */
+/*?: -1*//*
+
 
         val a3 = a2?.toString()
 
@@ -321,7 +324,9 @@ class Test1 {
     // a++ // err a ++
 
 
-    fun m111(str:String = ""){/*...*/}
+    fun m111(str:String = ""){*/
+/*...*//*
+}
 
     fun m112(){
         for (i in 0 until 10){
@@ -374,7 +379,9 @@ class Test1 {
 
     data class C133(val name:String , val age:String)
     class C1331 constructor(
-        /**/
+        */
+/**//*
+
         val name:String ,
         val age:String){
 
@@ -408,9 +415,11 @@ class Test1 {
         C1333().m1()// 7
 
 
-        /*if (pres.qianmuna.study.Test1::sub.isLateinit){
+        */
+/*if (pres.qianmuna.study.Test1::sub.isLateinit){
             println("1")
-        }*/
+        }*//*
+
     }
 
     var counter = 1
@@ -582,7 +591,8 @@ class Test1 {
         // list
 
         //
-        /*
+        */
+/*
         *
         * Iterable
         *   mutableIterable
@@ -604,7 +614,8 @@ class Test1 {
         *
         *
         *
-        * */
+        * *//*
+
 
 
     }
@@ -635,6 +646,7 @@ class Test1 {
     
 
 
+*/
 
 
 }

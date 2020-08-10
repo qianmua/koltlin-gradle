@@ -11,7 +11,7 @@ import org.junit.Test
  */
 
 class Test2 {
-
+/*
     @Test
     fun m1(){
         var a:Int = 7
@@ -26,7 +26,7 @@ class Test2 {
         b = a
 
 
-    }
+    }*/
 }
 
 open class A{

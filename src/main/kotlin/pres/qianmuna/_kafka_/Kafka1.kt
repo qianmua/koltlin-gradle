@@ -1,8 +1,8 @@
 package pres.qianmuna._kafka_
 
-import org.apache.kafka.clients.consumer.ConsumerRecord
+/*import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.springframework.kafka.annotation.KafkaListener
-import org.springframework.kafka.core.KafkaTemplate
+import org.springframework.kafka.core.KafkaTemplate*/
 
 /**
 @author HJC
@@ -21,6 +21,7 @@ class Kafka1{
 
 }
 
+/*
 class kafkaProducer{
 
 
@@ -33,4 +34,4 @@ class kafkaProducer{
 class KafkaConsumenr{
     @KafkaListener( topics = ["test"] )
     fun handlerMessage(record:ConsumerRecord<String , Any>) = println(record.value())
-}
+}*/

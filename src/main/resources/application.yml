@@ -1,0 +1,8 @@
+server:
+  port: 9090
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/qm_study_guli?serverTimezone=GMT%2B8
+    password: 123456

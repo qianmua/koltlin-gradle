@@ -15,13 +15,16 @@ repositories {
 dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
+
     implementation("org.jsoup:jsoup:1.12.1")
+
     implementation("org.springframework:spring-jdbc:5.2.5.RELEASE")
+
     //implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
     implementation("org.jetbrains.kotlinx" , "kotlinx-coroutines-core" , "1.2.1")
     // kafka
     // org.springframework:spring-kafka:2.2.7.RELEASE
-    implementation("org.springframework.kafka:spring-kafka:2.2.7.RELEASE")
+//    implementation("org.springframework.kafka:spring-kafka:2.2.7.RELEASE")
 
     // https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter
 //    compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.3.2'
@@ -29,9 +32,19 @@ dependencies {
 
     //org.springframework.boot:spring-boot-starter-web:$springBootVersion
     implementation("org.springframework.boot:spring-boot-starter-web:2.2.6.RELEASE")
+    
+    
+//    implementation("org.springframework.boot:spring-boot-starter-test:2.2.6.RELEASE")
+    
     //org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2
-    // mysql:mysql-connector-java:$mysql_version
 
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.1")
+    
+    
+    
+    // mysql:mysql-connector-java:$mysql_version
+    implementation("mysql:mysql-connector-java:8.0.16")
+    
     // lombok
 //    implementation ( "org.projectlombok",  "lombok",  "1.18.10")
     implementation ("org.projectlombok",  "lombok",  "1.18.10")
