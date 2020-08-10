@@ -1,6 +1,7 @@
 package pres.qianmuna._mybatis_plus_.config
 
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -20,4 +21,12 @@ open class MyBatisPlusConfig {
     @Bean
     open fun optimisticLockerInterceptor():OptimisticLockerInterceptor =
         OptimisticLockerInterceptor()
+
+
+    /**
+     * 分页插件
+     */
+    @Bean
+    open fun paginationInterceptor():PaginationInterceptor =
+        PaginationInterceptor()
 }

@@ -1,5 +1,6 @@
 package pres.qianmuna._mybatis_plus_.controller
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.GetMapping
@@ -53,6 +54,41 @@ open class TestController {
         userMapper.updateById(UserDO(1,"hhh") )
 
         return "Success"
+    }
+
+    @GetMapping("/testMoreId")
+    fun moreId():String{
+        userMapper.selectBatchIds(listOf(1,23,4,56))
+
+        // map
+        userMapper.selectByMap(mapOf("name" to "jone" , "age" to 11))
+
+        //wrapper // 条件查询器
+
+        return "success"
+    }
+
+
+    @GetMapping("/testPage")
+    fun page():String{
+
+        val page = Page<UserDO>(1,10)
+
+        userMapper.selectPage(page , null)
+
+        page.current // 当前页
+        page.records // 数据页
+        page.size // 每页数量
+        page.total // 总数
+        page.pages // 总页数
+
+        page.hasNext() // 有无下一页
+        page.hasPrevious() // 有无下一页
+
+
+
+
+        return "success"
     }
 
 
