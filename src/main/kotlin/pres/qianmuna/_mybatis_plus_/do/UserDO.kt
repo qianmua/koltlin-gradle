@@ -1,6 +1,7 @@
 package pres.qianmuna._mybatis_plus_.`do`
 
-import com.baomidou.mybatisplus.annotation.TableName
+import com.baomidou.mybatisplus.annotation.*
+import java.util.*
 
 /**
 @author HJC
@@ -11,7 +12,19 @@ import com.baomidou.mybatisplus.annotation.TableName
  */
 @TableName("cms_ad_type")
 data class UserDO (
+    // auto 自动增长
+    //ID_worker         // mp自带策略 生成 19位得值 // 数字类型 可以用这种
+    //id_worker_str     // 字符串类型 使用这种
+    //input // 手动输入
+    //none 输入
+    // uuid uuid
+    //
+    @TableId( type = IdType.AUTO)
     private val id:Long? ,
     private val title:String? ,
-    private val gmtCreate:String? ,
-    private val gmtModified:String? )
+    @TableField( fill = FieldFill.INSERT)
+    private val gmtCreate:Date? = Date() ,
+    @TableField( fill = FieldFill.INSERT_UPDATE)
+    private val gmtModified:Date? = Date() ,
+    @Version
+    private val version:Int? = 0)
